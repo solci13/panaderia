@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panadería</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Leal</h1>
+  </header>
+
+  <main>
+    <section class="productos">
+      <div class="producto">
+        <img src="https://via.placeholder.com/200x150?text=Pan+de+Almendras" alt="Pan de Almendras" />
+        <h2>Pan de Almendras</h2>
+        <p>1 bolsa (contiene 10 pancitos)</p>
+        <span class="precio">$3600</span>
+        <div class="cantidad">
+          <label for="cant-pan">Cantidad:</label>
+          <input
+            type="number"
+            id="cant-pan"
+            min="1"
+            value="1"
+            onchange="actualizarCantidadSeleccionada()"
+          />
+          <p id="cantidad-seleccionada">Cantidad seleccionada: 1</p>
+        </div>
+        <button
+          onclick="agregarAlCarrito('Pan de Almendras', 3600, parseInt(document.getElementById('cant-pan').value))"
+        >
+          Agregar al carrito
+        </button>
+      </div>
+    </section>
+
+    <section class="carrito">
+      <h2>🛒 Tu Carrito</h2>
+      <ul id="lista-carrito"></ul>
+      <p>Total: $<span id="total">0.00</span></p>
+
+      <label for="fecha-pedido">Fecha estimada de entrega:</label>
+      <input type="date" id="fecha-pedido" />
+
+      <label for="retiro-pedido">
+        <input type="checkbox" id="retiro-pedido" checked />
+        Retirar el pedido en domicilio
+      </label>
+
+      <label for="metodo-pago">Método de pago:</label>
+      <select id="metodo-pago">
+        <option value="Efectivo">Efectivo</option>
+        <option value="Transferencia">Transferencia</option>
+      </select>
+
+      <p
+        id="alias-transferencia"
+        style="display:none; color:#004d80; font-weight:600; margin-top:8px;"
+      >
+        Alias para transferencia: <strong>solleal.dni</strong>
+      </p>
+
+      <button onclick="enviarPedido()">Enviar Pedido</button>
+
+      <p class="aviso">
+        * Los pedidos deben hacerse con anticipación y están sujetos a la disponibilidad de la panadería.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

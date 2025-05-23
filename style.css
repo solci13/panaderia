@@ -1,0 +1,166 @@
+/* Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f8ff;
+  color: #333;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  color: #007acc;
+  font-size: 2.5rem;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+.productos {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.producto {
+  background-color: #ffffff;
+  border: 2px solid #cce7ff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 122, 204, 0.1);
+}
+
+.producto img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.producto h2 {
+  color: #005b99;
+  margin: 10px 0 5px;
+}
+
+.precio {
+  font-weight: bold;
+  color: #007acc;
+  margin: 10px 0;
+}
+
+.cantidad {
+  margin: 10px 0;
+}
+
+.cantidad label {
+  margin-right: 8px;
+  color: #004d80;
+}
+
+.cantidad input {
+  width: 60px;
+  padding: 5px;
+  border: 1px solid #99ccff;
+  border-radius: 6px;
+}
+
+.cantidad p {
+  margin-top: 5px;
+  color: #004d80;
+  font-weight: 600;
+}
+
+.carrito {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background-color: #e6f2ff;
+  border: 1px solid #99ccff;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.carrito h2 {
+  margin-bottom: 10px;
+  color: #004d80;
+}
+
+#lista-carrito {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
+#lista-carrito li {
+  margin-bottom: 5px;
+}
+
+.carrito label {
+  display: block;
+  margin-top: 10px;
+  color: #004d80;
+}
+
+.carrito input[type='date'],
+.carrito select {
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #99ccff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #005b99;
+}
+
+.aviso {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #004d80;
+  font-style: italic;
+}
+
+/* Media queries para móviles */
+@media (max-width: 600px) {
+  main {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .productos,
+  .carrito {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+}
