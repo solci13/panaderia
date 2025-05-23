@@ -1,6 +1,7 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 actualizarCantidadSeleccionada();
+actualizarCarrito();
 
 function agregarAlCarrito(nombre, precio, cantidad = 1) {
   if (cantidad < 1) {
@@ -14,6 +15,7 @@ function agregarAlCarrito(nombre, precio, cantidad = 1) {
   } else {
     carrito.push({ nombre, precio, cantidad });
   }
+  guardarCarrito();
   actualizarCarrito();
 }
 
@@ -23,14 +25,41 @@ function actualizarCarrito() {
   lista.innerHTML = "";
   let totalCompra = 0;
 
-  carrito.forEach((item) => {
+  carrito.forEach((item, index) => {
     const li = document.createElement("li");
-    li.textContent = `${item.cantidad} x ${item.nombre} - $${(item.precio * item.cantidad).toFixed(2)}`;
+    li.innerHTML = `
+      <strong>${item.nombre}</strong><br>
+      <input type="number" min="1" value="${item.cantidad}" onchange="cambiarCantidad(${index}, this.value)" style="width: 60px; margin-top: 5px;">
+      <span> x $${item.precio.toFixed(2)} = $${(item.precio * item.cantidad).toFixed(2)}</span>
+    <button onclick="eliminarDelCarrito(${index})" class="eliminar-btn" title="Eliminar del carrito">🗑️</button>
+    
+    `;
     lista.appendChild(li);
     totalCompra += item.precio * item.cantidad;
   });
 
   total.textContent = totalCompra.toFixed(2);
+}
+
+function cambiarCantidad(index, nuevaCantidad) {
+  nuevaCantidad = parseInt(nuevaCantidad);
+  if (nuevaCantidad < 1 || isNaN(nuevaCantidad)) {
+    eliminarDelCarrito(index);
+    return;
+  }
+  carrito[index].cantidad = nuevaCantidad;
+  guardarCarrito();
+  actualizarCarrito();
+}
+
+function eliminarDelCarrito(index) {
+  carrito.splice(index, 1);
+  guardarCarrito();
+  actualizarCarrito();
+}
+
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
 function actualizarCantidadSeleccionada() {

@@ -221,6 +221,24 @@ button:hover {
   font-style: italic;
 }
 
+button.eliminar-btn {
+  background-color: transparent;
+  color: #ff4d4d;
+  border: none;
+  padding: 2px 6px;
+  font-size: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+button.eliminar-btn:hover {
+  color: #e04343;
+  transform: scale(1.2);
+}
+
+
+
 /* Media queries para móviles */
 @media (max-width: 600px) {
   main {
