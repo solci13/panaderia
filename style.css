@@ -1,4 +1,4 @@
-/* Reset y base */
+/* Estilo moderno: negro y azul con sombras */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +7,8 @@
 }
 
 body {
-  background-color: #f0f8ff;
-  color: #333;
+  background-color: #111;
+  color: #f1f1f1;
   padding: 20px;
 }
 
@@ -17,11 +17,70 @@ header {
   margin-bottom: 30px;
 }
 
-h1 {
-  color: #007acc;
-  font-size: 2.5rem;
+/* .logo {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
+.logo .linea-uno {
+  color: white;
+  font-size: 3rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.logo .linea-dos {
+  color: #00BFFF; 
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.slogan {
+  color: #cccccc;
+  font-size: 1rem;
+  margin-top: 10px;
+  font-style: italic;
+} */
+ .logo-v2 {
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.logo-v2 h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(to right, white 40%, #00cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px rgba(0, 170, 255, 0.1);
+}
+
+.logo-v2 .blanco {
+  color: white;
+  text-shadow: 0px 2px 5px #353333;
+  font-size: 48px;
+
+}
+
+.logo-v2 .azul {
+  color: #00cfff;
+  text-shadow:  -18px -12px 17px #000;
+}
+
+.slogan-v2 {
+  color: #999;
+  font-style: italic;
+  font-size: 1rem;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+
+/* Productos y Carrito */
 main {
   display: flex;
   flex-wrap: wrap;
@@ -36,12 +95,18 @@ main {
 }
 
 .producto {
-  background-color: #ffffff;
-  border: 2px solid #cce7ff;
-  border-radius: 10px;
-  padding: 15px;
+  background-color: #1a1a1a;
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 122, 204, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 170, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 170, 255, 0.4);
 }
 
 .producto img {
@@ -51,13 +116,13 @@ main {
 }
 
 .producto h2 {
-  color: #005b99;
+  color: #00aaff;
   margin: 10px 0 5px;
 }
 
 .precio {
   font-weight: bold;
-  color: #007acc;
+  color: #00aaff;
   margin: 10px 0;
 }
 
@@ -67,35 +132,38 @@ main {
 
 .cantidad label {
   margin-right: 8px;
-  color: #004d80;
+  color: #00aaff;
 }
 
 .cantidad input {
   width: 60px;
   padding: 5px;
-  border: 1px solid #99ccff;
+  border: 1px solid #00aaff;
   border-radius: 6px;
+  background-color: #222;
+  color: #f1f1f1;
 }
 
 .cantidad p {
   margin-top: 5px;
-  color: #004d80;
+  color: #00aaff;
   font-weight: 600;
 }
 
+/* Carrito */
 .carrito {
   flex: 1;
   min-width: 250px;
   max-width: 300px;
-  background-color: #e6f2ff;
-  border: 1px solid #99ccff;
-  border-radius: 10px;
-  padding: 15px;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 170, 255, 0.15);
 }
 
 .carrito h2 {
   margin-bottom: 10px;
-  color: #004d80;
+  color: #00aaff;
 }
 
 #lista-carrito {
@@ -110,40 +178,46 @@ main {
 .carrito label {
   display: block;
   margin-top: 10px;
-  color: #004d80;
+  color: #00aaff;
 }
 
 .carrito input[type='date'],
 .carrito select {
   margin-top: 5px;
-  padding: 5px;
-  border-radius: 6px;
-  border: 1px solid #99ccff;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #00aaff;
   width: 100%;
-  box-sizing: border-box;
+  background-color: #222;
+  color: #f1f1f1;
 }
 
+/* Botón */
 button {
-  background-color: #007acc;
-  color: white;
+  background-color: #00aaff;
+  color: #111;
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
   margin-top: 15px;
   width: 100%;
-  font-size: 1rem;
 }
 
 button:hover {
-  background-color: #005b99;
+  background-color: #0088cc;
+  box-shadow: 0 0 15px rgba(0, 170, 255, 0.8);
+  transform: scale(1.03);
 }
 
 .aviso {
   margin-top: 15px;
   font-size: 0.9rem;
-  color: #004d80;
+  color: #00aaff;
   font-style: italic;
 }
 
