@@ -229,7 +229,9 @@ button:hover {
     flex-direction: column;
     gap: 20px;
   }
-
+.logo{
+  width: 50%;
+}
   .productos,
   .carrito {
     max-width: 100%;
