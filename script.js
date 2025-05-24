@@ -110,7 +110,7 @@ function enviarPedido() {
   mensaje += retiro ? `*Retiro:* Pasaré a retirar el pedido.%0A` : "";
   mensaje += `*Método de pago:* ${metodoPago}%0A`;
   if (metodoPago === "Transferencia")
-    mensaje += `%0AAlias para transferencia: solleal.dni`;
+    mensaje += `%0AAlias para transferencia: LEALSOL.DNI`;
 
   const numeroWhatsApp = "5492235789055";
   const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
