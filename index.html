@@ -3,24 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Panadería</title>
+  <title>Panadería Siempre Leal</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-  <div class="logo-v2">
-  <h1><span class="blanco">Siempre</span> <span class="azul">Leal</span></h1>
-
-</div>
-
+    <div class="logo-v2">
+      <h1><span class="blanco">Siempre</span> <span class="azul">Leal</span></h1>
+    </div>
   </header>
 
   <main>
     <section class="productos">
       <div class="producto">
-        <img src="https://via.placeholder.com/200x150?text=Pan+de+Almendras" alt="Pan de Almendras" />
+        <img src="./pan.jpeg" alt="Pan de Almendras" />
         <h2>Pan de harina de Almendras</h2>
         <p>1 bolsa (contiene 10 panes)</p>
         <span class="precio">$3600</span>
@@ -30,13 +27,15 @@
             type="number"
             id="cant-pan"
             min="1"
-            value="1"
+            value="0"
             onchange="actualizarCantidadSeleccionada()"
           />
-          <p id="cantidad-seleccionada">Cantidad seleccionada: 1</p>
+          <p id="cantidad-seleccionada">Cantidad seleccionada: 0</p>
         </div>
         <button
+          id="btn-agregar"
           onclick="agregarAlCarrito('Pan de Almendras', 3600, parseInt(document.getElementById('cant-pan').value))"
+          disabled
         >
           Agregar al carrito
         </button>
@@ -48,12 +47,16 @@
       <ul id="lista-carrito"></ul>
       <p>Total: $<span id="total">0.00</span></p>
 
+      <button id="btn-vaciar" style="display:none; margin-bottom: 15px;" onclick="vaciarCarrito()">
+        Vaciar carrito
+      </button>
+
       <label for="fecha-pedido">Fecha estimada de entrega:</label>
       <input type="date" id="fecha-pedido" />
 
       <label for="retiro-pedido">
         <input type="checkbox" id="retiro-pedido" checked />
-       El pedido se retira en mi domicilio
+        El pedido se retira en mi domicilio
       </label>
 
       <label for="metodo-pago">Método de pago:</label>
@@ -64,7 +67,7 @@
 
       <p
         id="alias-transferencia"
-        style="display:none; color:#004d80; font-weight:600; margin-top:8px;"
+        style="display:none; color:#eef5fa; font-weight:600; margin-top:8px;"
       >
         Alias para transferencia: <strong>solleal.dni</strong>
       </p>

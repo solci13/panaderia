@@ -1,4 +1,4 @@
-/* Estilo moderno: negro y azul con sombras */
+/* Reset y base */
 * {
   margin: 0;
   padding: 0;
@@ -12,42 +12,16 @@ body {
   padding: 20px;
 }
 
+/* Header */
 header {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* .logo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.logo .linea-uno {
-  color: white;
-  font-size: 3rem;
-  font-weight: 300;
-  text-shadow: 1px 1px 2px #000;
-}
-
-.logo .linea-dos {
-  color: #00BFFF; 
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 2px #000;
-}
-
-.slogan {
-  color: #cccccc;
-  font-size: 1rem;
-  margin-top: 10px;
-  font-style: italic;
-} */
- .logo-v2 {
-  text-align: center;
-  margin-bottom: 40px;
+.logo-v2 {
   text-transform: uppercase;
   letter-spacing: 3px;
+  margin-bottom: 40px;
 }
 
 .logo-v2 h1 {
@@ -63,12 +37,11 @@ header {
   color: white;
   text-shadow: 0px 2px 5px #353333;
   font-size: 48px;
-
 }
 
 .logo-v2 .azul {
   color: #00cfff;
-  text-shadow:  -18px -12px 17px #000;
+  text-shadow: -18px -12px 17px #000;
 }
 
 .slogan-v2 {
@@ -79,8 +52,7 @@ header {
   letter-spacing: 1px;
 }
 
-
-/* Productos y Carrito */
+/* Main layout */
 main {
   display: flex;
   flex-wrap: wrap;
@@ -88,6 +60,7 @@ main {
   justify-content: center;
 }
 
+/* Productos */
 .productos {
   flex: 1;
   min-width: 250px;
@@ -96,7 +69,6 @@ main {
 
 .producto {
   background-color: #1a1a1a;
-  border: none;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
@@ -110,7 +82,8 @@ main {
 }
 
 .producto img {
-  max-width: 100%;
+  max-width: 25%;
+  height: auto;
   border-radius: 8px;
   margin-bottom: 10px;
 }
@@ -118,12 +91,14 @@ main {
 .producto h2 {
   color: #00aaff;
   margin: 10px 0 5px;
+  font-weight: 600;
 }
 
 .precio {
   font-weight: bold;
   color: #00aaff;
   margin: 10px 0;
+  font-size: 1.1rem;
 }
 
 .cantidad {
@@ -133,21 +108,24 @@ main {
 .cantidad label {
   margin-right: 8px;
   color: #00aaff;
+  font-weight: 600;
 }
 
 .cantidad input {
-  width: 60px;
+  width: 50px;
   padding: 5px;
   border: 1px solid #00aaff;
   border-radius: 6px;
   background-color: #222;
   color: #f1f1f1;
+  font-weight: 600;
 }
 
 .cantidad p {
   margin-top: 5px;
   color: #00aaff;
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
 /* Carrito */
@@ -164,21 +142,73 @@ main {
 .carrito h2 {
   margin-bottom: 10px;
   color: #00aaff;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 #lista-carrito {
   list-style: none;
   margin-bottom: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
 #lista-carrito li {
-  margin-bottom: 5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #004d80;
 }
 
+#lista-carrito li strong {
+  display: block;
+  color: #00cfff;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+#lista-carrito li input[type="number"] {
+  width: 60px;
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid #00aaff;
+  border-radius: 6px;
+  background-color: #222;
+  color: #f1f1f1;
+  font-weight: 600;
+}
+
+#lista-carrito li span {
+  margin-left: 10px;
+  font-weight: 600;
+  color: #00aaff;
+}
+
+button.eliminar-btn {
+  background-color: transparent;
+  color: #ff4d4d;
+  border: none;
+  padding: 4px 8px;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+button.eliminar-btn:hover {
+  color: #e04343;
+  transform: scale(1.2);
+}
+
+/* Form inputs in carrito */
 .carrito label {
   display: block;
-  margin-top: 10px;
+  margin-top: 15px;
   color: #00aaff;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .carrito input[type='date'],
@@ -190,16 +220,25 @@ main {
   width: 100%;
   background-color: #222;
   color: #f1f1f1;
+  font-weight: 600;
 }
 
-/* Botón */
+/* Alias transferencia */
+#alias-transferencia {
+  color: #004d80;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+
+/* Botones generales */
 button {
   background-color: #00aaff;
   color: #111;
   border: none;
   padding: 12px 20px;
   border-radius: 10px;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -214,30 +253,13 @@ button:hover {
   transform: scale(1.03);
 }
 
+/* Texto aviso */
 .aviso {
   margin-top: 15px;
   font-size: 0.9rem;
   color: #00aaff;
   font-style: italic;
 }
-
-button.eliminar-btn {
-  background-color: transparent;
-  color: #ff4d4d;
-  border: none;
-  padding: 2px 6px;
-  font-size: 1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-button.eliminar-btn:hover {
-  color: #e04343;
-  transform: scale(1.2);
-}
-
-
 
 /* Media queries para móviles */
 @media (max-width: 600px) {
