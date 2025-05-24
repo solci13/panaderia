@@ -224,7 +224,7 @@ button:hover {
 }
 
 /* Media queries para móviles */
-@media (max-width: 600px) {
+@media (max-width: 780px) {
   main {
     flex-direction: column;
     gap: 20px;
