@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Panadería Siempre Leal</title>
+  <title>Leal</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header>
-    <div class="logo-v2">
-      <h1><span class="blanco">Siempre</span> <span class="azul">Leal</span></h1>
+    <div >
+      <img src="./2.jpeg" alt="" class="logo">
     </div>
   </header>
 
   <main>
     <section class="productos">
       <div class="producto">
-        <img src="./pan.jpeg" alt="Pan de Almendras" />
         <h2>Pan de harina de Almendras</h2>
         <p>1 bolsa (contiene 10 panes)</p>
         <span class="precio">$3600</span>
@@ -47,9 +46,10 @@
       <ul id="lista-carrito"></ul>
       <p>Total: $<span id="total">0.00</span></p>
 
-      <button id="btn-vaciar" style="display:none; margin-bottom: 15px;" onclick="vaciarCarrito()">
-        Vaciar carrito
-      </button>
+      <button id="btn-vaciar" class="btn-vaciar" style="display:none; margin-bottom: 15px;" onclick="vaciarCarrito()">
+     Eliminar
+    </button>
+
 
       <label for="fecha-pedido">Fecha estimada de entrega:</label>
       <input type="date" id="fecha-pedido" />

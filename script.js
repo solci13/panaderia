@@ -33,12 +33,12 @@ function actualizarCarrito() {
 
   carrito.forEach((item, index) => {
     const li = document.createElement("li");
-    li.innerHTML = `
-      <strong>${item.nombre}</strong><br>
-      <input type="number" min="1" value="${item.cantidad}" onchange="cambiarCantidad(${index}, this.value)" style="width: 60px; margin-top: 5px;">
-      <span> x $${Math.round(item.precio)} = $${Math.round(item.precio * item.cantidad)}</span>
-      <button onclick="eliminarDelCarrito(${index})" class="eliminar-btn" title="Eliminar del carrito">🗑️</button>
-    `;
+   li.innerHTML = `
+  <strong>${item.nombre}</strong><br>
+  <input type="number" min="1" value="${item.cantidad}" onchange="cambiarCantidad(${index}, this.value)" style="width: 60px; margin-top: 5px;">
+  <span> x $${Math.round(item.precio)} = $${Math.round(item.precio * item.cantidad)}</span>
+`;
+
     lista.appendChild(li);
     totalCompra += item.precio * item.cantidad;
   });
@@ -62,9 +62,13 @@ function eliminarDelCarrito(index) {
 }
 
 function vaciarCarrito() {
+  const confirmacion = confirm("¿Estás seguro de que quieres vaciar todo el carrito?");
+  if (!confirmacion) return;
+
   carrito = [];
   actualizarCarrito();
 }
+
 
 function actualizarCantidadSeleccionada() {
   const cantidadInput = document.getElementById("cant-pan");
@@ -108,7 +112,7 @@ function enviarPedido() {
   if (metodoPago === "Transferencia")
     mensaje += `%0AAlias para transferencia: solleal.dni`;
 
-  const numeroWhatsApp = "5492235789055"; // Cambia por tu número real
+  const numeroWhatsApp = "5492235789055";
   const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
   window.open(url, "_blank");
 }

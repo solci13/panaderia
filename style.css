@@ -17,40 +17,11 @@ header {
   text-align: center;
   margin-bottom: 30px;
 }
-
-.logo-v2 {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  margin-bottom: 40px;
+.logo{
+  width: 20%;
+  border-radius: 100%;
 }
 
-.logo-v2 h1 {
-  font-size: 3.5rem;
-  font-weight: 700;
-  background: linear-gradient(to right, white 40%, #00cfff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 2px 2px 4px rgba(0, 170, 255, 0.1);
-}
-
-.logo-v2 .blanco {
-  color: white;
-  text-shadow: 0px 2px 5px #353333;
-  font-size: 48px;
-}
-
-.logo-v2 .azul {
-  color: #00cfff;
-  text-shadow: -18px -12px 17px #000;
-}
-
-.slogan-v2 {
-  color: #999;
-  font-style: italic;
-  font-size: 1rem;
-  margin-top: 10px;
-  letter-spacing: 1px;
-}
 
 /* Main layout */
 main {
@@ -81,12 +52,6 @@ main {
   box-shadow: 0 6px 18px rgba(0, 170, 255, 0.4);
 }
 
-.producto img {
-  max-width: 25%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
 
 .producto h2 {
   color: #00aaff;
@@ -184,23 +149,20 @@ main {
   color: #00aaff;
 }
 
-button.eliminar-btn {
-  background-color: transparent;
-  color: #ff4d4d;
-  border: none;
-  padding: 4px 8px;
-  font-size: 1.1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.2s ease;
-  vertical-align: middle;
-  margin-left: 10px;
+/* Botón Vaciar Carrito */
+button.btn-vaciar {
+background-color: #430079;
+    color: #fff;
+    width: 40%;
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
 }
 
-button.eliminar-btn:hover {
-  color: #e04343;
-  transform: scale(1.2);
+button.btn-vaciar:hover {
+  background-color: #e04343;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
+  transform: scale(1.05);
 }
+
 
 /* Form inputs in carrito */
 .carrito label {
