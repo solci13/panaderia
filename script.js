@@ -101,7 +101,7 @@ function enviarPedido() {
   }
 
   const confirmacion = confirm(
-    "Recuerda que el pedido debe hacerse con anticipación y está sujeto a la disponibilidad de la panadería.\n\n¿Deseas continuar?"
+    "Recuerda que el pedido debe hacerse con anticipación. Sino estará sujeto a la disponibilidad de la panadería.\n\n¿Deseas continuar?"
   );
   if (!confirmacion) return;
 
@@ -111,38 +111,29 @@ function enviarPedido() {
 
   const pedidoTexto = carrito
     .map((item) => `- ${item.cantidad} x ${item.nombre}`)
-    .join("%0A");
+    .join("\n");
 
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
-  let mensaje = `*Pedido Panadería *%0A%0A`;
-  mensaje += `*Productos:*%0A${pedidoTexto}%0A%0A`;
+  let mensaje = `*Pedido Panadería*\n\n`;
+  mensaje += `*Productos:*\n${pedidoTexto}\n\n`;
   mensaje += `*Total:* ${total.toLocaleString("es-AR", {
     style: "currency",
     currency: "ARS",
     maximumFractionDigits: 0
-  })}%0A%0A`;
+  })}\n\n`;
 
-  if (fechaInput) mensaje += `*Fecha estimada de entrega:* ${fechaInput}%0A`;
-  mensaje += retiro ? `*Retiro:* Pasaré a retirar el pedido.%0A` : "";
-  mensaje += `*Método de pago:* ${metodoPago}%0A`;
+  if (fechaInput) mensaje += `*Fecha estimada de entrega:* ${fechaInput}\n`;
+  mensaje += retiro ? `*Retiro:* Pasaré a retirar el pedido.\n` : "";
+  mensaje += `*Método de pago:* ${metodoPago}\n`;
   if (metodoPago === "Transferencia")
-    mensaje += `%0AAlias para transferencia: LEALSOL.DNI`;
+    mensaje += `\nAlias para transferencia: LEALSOL.DNI`;
 
   const numeroWhatsApp = "5492235789055";
-  const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
   window.open(url, "_blank");
 }
 
-// Mostrar/ocultar alias de transferencia según selección de método de pago
-document.getElementById("metodo-pago").addEventListener("change", function () {
-  const alias = document.getElementById("alias-transferencia");
-  if (this.value === "Transferencia") {
-    alias.style.display = "block";
-  } else {
-    alias.style.display = "none";
-  }
-});
 
 // Establecer fecha mínima al cargar
 window.addEventListener("DOMContentLoaded", function () {
