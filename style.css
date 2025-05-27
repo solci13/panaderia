@@ -149,19 +149,23 @@ main {
   color: #00aaff;
 }
 
-/* Botón Vaciar Carrito */
-button.btn-vaciar {
-background-color: #430079;
-    color: #fff;
-    width: 40%;
+button.btn-accion {
+  background-color: #430079;
+  color: #fff;
+  width: 45%;
   box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+  transition: all 0.2s ease-in-out;
+  border: none;
+  text-align: center;
+  cursor: pointer;
 }
 
-button.btn-vaciar:hover {
+button.btn-accion:hover {
   background-color: #e04343;
   box-shadow: 0 0 15px rgba(255, 77, 77, 0.8);
   transform: scale(1.05);
 }
+
 
 
 /* Form inputs in carrito */

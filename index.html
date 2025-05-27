@@ -21,7 +21,7 @@
         <p>1 bolsa (contiene 10 panes)</p>
         <span class="precio">$3600</span>
         <div class="cantidad">
-          <label for="cant-pan">Cantidad:</label>
+          <label for="cant-pan">Bolsas:</label>
           <input
             type="number"
             id="cant-pan"
@@ -44,19 +44,15 @@
     <section class="carrito">
       <h2>🛒 Tu Carrito</h2>
       <ul id="lista-carrito"></ul>
-      <p>Total: $<span id="total">0.00</span></p>
+      <p>Total: <span id="total">0.00</span></p>
 
-      <button id="btn-vaciar" class="btn-vaciar" style="display:none; margin-bottom: 15px;" onclick="vaciarCarrito()">
-     Eliminar
-    </button>
-
-
+    
       <label for="fecha-pedido">Fecha estimada de entrega:</label>
-      <input type="date" id="fecha-pedido" />
+      <input type="date" id="fecha-pedido" min="">
+
 
       <label for="retiro-pedido">
-        <input type="checkbox" id="retiro-pedido" checked />
-        El pedido se retira en mi domicilio
+       El pedido se retira en mi domicilio
       </label>
 
       <label for="metodo-pago">Método de pago:</label>
@@ -75,7 +71,7 @@
       <button onclick="enviarPedido()">Enviar Pedido</button>
 
       <p class="aviso">
-        * Los pedidos deben hacerse con anticipación y están sujetos a la disponibilidad de la panadería.
+        * Los pedidos deben hacerse con anticipación. Sino están sujetos a la disponibilidad.
       </p>
     </section>
   </main>

@@ -21,37 +21,60 @@ function agregarAlCarrito(nombre, precio, cantidad = 1) {
 function actualizarCarrito() {
   const lista = document.getElementById("lista-carrito");
   const total = document.getElementById("total");
-  const btnVaciar = document.getElementById("btn-vaciar");
   lista.innerHTML = "";
   let totalCompra = 0;
 
-  if (carrito.length === 0) {
-    btnVaciar.style.display = "none";
-  } else {
-    btnVaciar.style.display = "block";
-  }
-
   carrito.forEach((item, index) => {
     const li = document.createElement("li");
-   li.innerHTML = `
-  <strong>${item.nombre}</strong><br>
-  <input type="number" min="1" value="${item.cantidad}" onchange="cambiarCantidad(${index}, this.value)" style="width: 60px; margin-top: 5px;">
-  <span> x $${Math.round(item.precio)} = $${Math.round(item.precio * item.cantidad)}</span>
-`;
-
+    li.innerHTML = `
+      <strong>${item.nombre}</strong><br>
+      <input 
+        type="number" min="1" value="${item.cantidad}" id="cantidad-${index}" 
+        style="width: 60px; margin-top: 5px;" 
+        oninput="mostrarBotonActualizar(${index})"
+      >
+      <span> x $${Math.round(item.precio)} = $${Math.round(item.precio * item.cantidad)}</span><br>
+      <button 
+        onclick="confirmarCambioCantidad(${index})" 
+        class="btn-accion" 
+        style="margin-top: 5px; display: none;" 
+        id="btn-actualizar-${index}"
+      >
+        Actualizar
+      </button>
+      <button 
+        onclick="eliminarDelCarrito(${index})" 
+        class="btn-accion" 
+        style="margin-top: 5px;"
+      >
+        Eliminar
+      </button>
+    `;
     lista.appendChild(li);
     totalCompra += item.precio * item.cantidad;
   });
 
-  total.textContent = Math.round(totalCompra);
+  total.textContent = totalCompra.toLocaleString("es-AR", {
+    style: "currency",
+    currency: "ARS",
+    maximumFractionDigits: 0
+  });
 }
 
-function cambiarCantidad(index, nuevaCantidad) {
-  nuevaCantidad = parseInt(nuevaCantidad);
-  if (nuevaCantidad < 1 || isNaN(nuevaCantidad)) {
-    eliminarDelCarrito(index);
+function mostrarBotonActualizar(index) {
+  const botonActualizar = document.getElementById(`btn-actualizar-${index}`);
+  botonActualizar.style.display = "inline-block";
+}
+
+function confirmarCambioCantidad(index) {
+  const input = document.getElementById(`cantidad-${index}`);
+  const nuevaCantidad = parseInt(input.value);
+
+  if (isNaN(nuevaCantidad) || nuevaCantidad < 1) {
+    alert("Cantidad no válida.");
     return;
   }
+
   carrito[index].cantidad = nuevaCantidad;
   actualizarCarrito();
 }
@@ -61,15 +84,6 @@ function eliminarDelCarrito(index) {
   actualizarCarrito();
 }
 
-function vaciarCarrito() {
-  const confirmacion = confirm("¿Estás seguro de que quieres vaciar todo el carrito?");
-  if (!confirmacion) return;
-
-  carrito = [];
-  actualizarCarrito();
-}
-
-
 function actualizarCantidadSeleccionada() {
   const cantidadInput = document.getElementById("cant-pan");
   const cantidad = parseInt(cantidadInput.value) || 0;
@@ -77,8 +91,6 @@ function actualizarCantidadSeleccionada() {
   const btnAgregar = document.getElementById("btn-agregar");
 
   textoCantidad.textContent = `Cantidad seleccionada: ${cantidad}`;
-
-  // Habilitar o deshabilitar botón según cantidad
   btnAgregar.disabled = cantidad < 1;
 }
 
@@ -105,7 +117,12 @@ function enviarPedido() {
 
   let mensaje = `*Pedido Panadería *%0A%0A`;
   mensaje += `*Productos:*%0A${pedidoTexto}%0A%0A`;
-  mensaje += `*Total:* $${Math.round(total)}%0A%0A`;
+  mensaje += `*Total:* ${total.toLocaleString("es-AR", {
+    style: "currency",
+    currency: "ARS",
+    maximumFractionDigits: 0
+  })}%0A%0A`;
+
   if (fechaInput) mensaje += `*Fecha estimada de entrega:* ${fechaInput}%0A`;
   mensaje += retiro ? `*Retiro:* Pasaré a retirar el pedido.%0A` : "";
   mensaje += `*Método de pago:* ${metodoPago}%0A`;
@@ -125,4 +142,11 @@ document.getElementById("metodo-pago").addEventListener("change", function () {
   } else {
     alias.style.display = "none";
   }
+});
+
+// Establecer fecha mínima al cargar
+window.addEventListener("DOMContentLoaded", function () {
+  const fechaInput = document.getElementById("fecha-pedido");
+  const hoy = new Date().toISOString().split("T")[0];
+  fechaInput.min = hoy;
 });
