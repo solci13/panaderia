@@ -1,6 +1,17 @@
 let carrito = [];
 
-actualizarCantidadSeleccionada();
+window.addEventListener("DOMContentLoaded", function () {
+  const fechaInput = document.getElementById("fecha-pedido");
+
+  const hoy = new Date();
+  hoy.setDate(hoy.getDate() + 1); // 1 día de anticipación
+  const fechaMinima = hoy.toISOString().split("T")[0];
+  fechaInput.min = fechaMinima;
+
+  actualizarCantidadSeleccionada();
+});
+
+
 actualizarCarrito();
 
 function agregarAlCarrito(nombre, precio, cantidad = 1) {
@@ -9,7 +20,8 @@ function agregarAlCarrito(nombre, precio, cantidad = 1) {
     return;
   }
 
-  const existente = carrito.find((item) => item.nombre === nombre);
+ const existente = carrito.find((item) => item.nombre.toLowerCase().trim() === nombre.toLowerCase().trim());
+
   if (existente) {
     existente.cantidad += cantidad;
   } else {
@@ -37,7 +49,7 @@ function actualizarCarrito() {
       <button 
         onclick="confirmarCambioCantidad(${index})" 
         class="btn-accion" 
-        style="margin-top: 5px; display: none;" 
+        style="margin-top: 5px; display: none;background-color:rgb(9 20 127);" 
         id="btn-actualizar-${index}"
       >
         Actualizar
@@ -100,13 +112,19 @@ function enviarPedido() {
     return;
   }
 
-  const confirmacion = confirm(
-    "Recuerda que el pedido debe hacerse con anticipación. Sino estará sujeto a la disponibilidad de la panadería.\n\n¿Deseas continuar?"
-  );
+const confirmacion = confirm(
+  "Recordá que los pedidos se preparan con 1 día de anticipación. Si hacés tu pedido para hoy, estará sujeto a disponibilidad.\n\n¿Deseás continuar?"
+);
+
+
   if (!confirmacion) return;
 
   const fechaInput = document.getElementById("fecha-pedido").value;
-  const retiro = document.getElementById("retiro-pedido").checked;
+  if (!fechaInput) {
+  alert("Por favor, seleccioná una fecha estimada de entrega.");
+  return;
+}
+
   const metodoPago = document.getElementById("metodo-pago").value;
 
   const pedidoTexto = carrito
@@ -115,7 +133,7 @@ function enviarPedido() {
 
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
 
-  let mensaje = `*Pedido Panadería*\n\n`;
+  let mensaje = `*Pedido*\n\n`;
   mensaje += `*Productos:*\n${pedidoTexto}\n\n`;
   mensaje += `*Total:* ${total.toLocaleString("es-AR", {
     style: "currency",
@@ -124,7 +142,7 @@ function enviarPedido() {
   })}\n\n`;
 
   if (fechaInput) mensaje += `*Fecha estimada de entrega:* ${fechaInput}\n`;
-  mensaje += retiro ? `*Retiro:* Pasaré a retirar el pedido.\n` : "";
+  mensaje += "*Retiro:* El pedido se retira en mi domicilio.\n";
   mensaje += `*Método de pago:* ${metodoPago}\n`;
   if (metodoPago === "Transferencia")
     mensaje += `\nAlias para transferencia: LEALSOL.DNI`;
@@ -134,10 +152,7 @@ function enviarPedido() {
   window.open(url, "_blank");
 }
 
-
-// Establecer fecha mínima al cargar
-window.addEventListener("DOMContentLoaded", function () {
-  const fechaInput = document.getElementById("fecha-pedido");
-  const hoy = new Date().toISOString().split("T")[0];
-  fechaInput.min = hoy;
+document.getElementById("metodo-pago").addEventListener("change", function () {
+  const alias = document.getElementById("alias-transferencia");
+  alias.style.display = this.value === "Transferencia" ? "block" : "none";
 });
