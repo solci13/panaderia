@@ -9,36 +9,14 @@
 </head>
 <body>
   <header>
-    <div >
-      <img src="./2.jpeg" alt="" class="logo">
+    <div>
+      <img src="./2.jpeg" alt="Logo Leal" class="logo" />
     </div>
   </header>
 
   <main>
     <section class="productos">
-      <div class="producto">
-        <h2>Pan de harina de Almendras</h2>
-        <p>1 bolsa (contiene 10 panes)</p>
-        <span class="precio">$3600</span>
-        <div class="cantidad">
-          <label for="cant-pan">Bolsas:</label>
-          <input
-            type="number"
-            id="cant-pan"
-            min="1"
-            value="0"
-            onchange="actualizarCantidadSeleccionada()"
-          />
-          <p id="cantidad-seleccionada">Cantidad seleccionada: 0</p>
-        </div>
-        <button
-          id="btn-agregar"
-          onclick="agregarAlCarrito('Pan de Almendras', 3600, parseInt(document.getElementById('cant-pan').value))"
-          disabled
-        >
-          Agregar al carrito
-        </button>
-      </div>
+      <!-- Productos generados por JS -->
     </section>
 
     <section class="carrito">
@@ -46,38 +24,36 @@
       <ul id="lista-carrito"></ul>
       <p>Total: <span id="total">0.00</span></p>
 
-    
       <label for="fecha-pedido">Fecha estimada de entrega:</label>
-      <input type="date" id="fecha-pedido" min="">
+      <input type="date" id="fecha-pedido" min="" />
 
+      <label>El pedido se retira en mi domicilio</label>
 
-      <label>
-       El pedido se retira en mi domicilio
-      </label>
-  
       <label for="metodo-pago">Método de pago:</label>
       <select id="metodo-pago">
         <option value="Efectivo">Efectivo</option>
         <option value="Transferencia">Transferencia</option>
       </select>
 
-      <p
-        id="alias-transferencia"
-        style="display:none; color:#eef5fa; font-weight:600; margin-top:8px;"
-      >
+      <p id="alias-transferencia" style="display:none;">
         Alias para transferencia: <strong>LEALSOL.DNI</strong>
       </p>
 
-      <button onclick="enviarPedido()">Enviar Pedido</button>
+      <button class="enviar-pedido">Enviar Pedido</button>
 
       <p class="aviso">
-  * Los pedidos deben hacerse con <strong>1 día de anticipación</strong>. Si no, están sujetos a disponibilidad.
-</p>
-
+        * Los pedidos deben hacerse con <strong>1 día de anticipación</strong>. Si no, están sujetos a disponibilidad.
+      </p>
     </section>
   </main>
+<div id="modal-gracias" class="modal">
+  <div class="modal-contenido">
+    <span id="cerrar-modal" class="cerrar">&times;</span>
+    <h2>¡Gracias por tu pedido! ❤️</h2>
+    <p>Te contactaremos pronto para confirmar la entrega.</p>
+  </div>
+</div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
