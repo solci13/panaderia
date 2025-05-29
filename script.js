@@ -28,7 +28,6 @@ function mostrarProductos() {
     `;
     contenedor.appendChild(div);
 
-    // Eventos JS
     const inputCantidad = div.querySelector(`#cant-pan-${prod.id}`);
     const btnAgregar = div.querySelector(`#btn-agregar-${prod.id}`);
 
@@ -73,7 +72,6 @@ function agregarAlCarrito(nombre, precio, cantidad = 1) {
 
   actualizarCarrito();
 
-  // Reset input
   const producto = productos.find(p => p.nombre === nombre);
   if (producto) {
     const cantidadInput = document.getElementById(`cant-pan-${producto.id}`);
@@ -175,18 +173,29 @@ function cargarCarrito() {
   actualizarCarrito();
 }
 
-// Fecha mínima
+// ✅ Fecha mínima corregida (sin desfase UTC)
 function configurarFechaMinima() {
   const fechaInput = document.getElementById("fecha-pedido");
   const hoy = new Date();
   hoy.setDate(hoy.getDate() + 1);
-  fechaInput.min = hoy.toISOString().split("T")[0];
+
+  const año = hoy.getFullYear();
+  const mes = String(hoy.getMonth() + 1).padStart(2, "0");
+  const dia = String(hoy.getDate()).padStart(2, "0");
+
+  const fechaMinima = `${año}-${mes}-${dia}`;
+  fechaInput.min = fechaMinima;
+  fechaInput.value = fechaMinima; // Selecciona mañana como predeterminada
 }
 
-
-// Formatear fecha
+// Formatear fecha sin desfase por zona horaria
 function formatearFecha(fechaISO) {
-  return new Date(fechaISO).toLocaleDateString("es-AR", {
+  // fechaISO: "YYYY-MM-DD"
+  // Crear objeto Date interpretando la fecha como local (evita desfase UTC)
+  const partes = fechaISO.split("-");
+  const fecha = new Date(partes[0], partes[1] - 1, partes[2]);
+
+  return fecha.toLocaleDateString("es-AR", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -207,6 +216,7 @@ function enviarPedido() {
   if (!confirmacion) return;
 
   const fechaInput = document.getElementById("fecha-pedido").value;
+
   if (!fechaInput) {
     alert("Por favor, seleccioná una fecha estimada de entrega.");
     return;
@@ -235,19 +245,16 @@ function enviarPedido() {
     mensaje += `\nAlias para transferencia: LEALSOL.DNI`;
 
   const numeroWhatsApp = "5492235789055";
-  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(
-    mensaje
-  )}`;
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
 
-  // Mostrar modal en lugar de redirigir directamente
   mostrarModalGracias();
 
-  // Abrir WhatsApp después de un pequeño delay
   setTimeout(() => {
     window.open(url, "_blank");
     vaciarCarrito();
   }, 1200);
 }
+
 function mostrarModalGracias() {
   const modal = document.getElementById("modal-gracias");
   modal.style.display = "flex";
@@ -262,7 +269,6 @@ function mostrarModalGracias() {
     }
   });
 }
-
 
 // Vaciar carrito
 function vaciarCarrito() {
