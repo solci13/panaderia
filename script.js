@@ -252,7 +252,7 @@ function enviarPedido() {
   setTimeout(() => {
     window.open(url, "_blank");
     vaciarCarrito();
-  }, 1200);
+  }, 800);
 }
 
 function mostrarModalGracias() {
