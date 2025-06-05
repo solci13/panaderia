@@ -291,3 +291,27 @@ window.addEventListener("DOMContentLoaded", () => {
     alias.style.display = metodo === "Transferencia" ? "block" : "none";
   });
 });
+
+  const botonTema = document.getElementById('boton-tema');
+  const body = document.body;
+
+  // Aplicar el tema guardado al cargar
+  const temaGuardado = localStorage.getItem('tema');
+  if (temaGuardado === 'oscuro') {
+    body.classList.add('modo-oscuro');
+    botonTema.textContent = '☀️';
+  } else {
+    botonTema.textContent = '🌙';
+  }
+
+  // Toggle de tema al hacer clic
+  botonTema.addEventListener('click', () => {
+    body.classList.toggle('modo-oscuro');
+    const modoOscuroActivo = body.classList.contains('modo-oscuro');
+
+    // Cambiar ícono
+    botonTema.textContent = modoOscuroActivo ? '☀️' : '🌙';
+
+    // Guardar en localStorage
+    localStorage.setItem('tema', modoOscuroActivo ? 'oscuro' : 'claro');
+  });
