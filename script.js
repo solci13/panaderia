@@ -242,7 +242,7 @@ function enviarPedido() {
   mensaje += `*Método de pago:* ${metodoPago}\n`;
 
   if (metodoPago === "Transferencia")
-    mensaje += `\nAlias para transferencia: LEALSOL.DNI`;
+    mensaje += `\nAlias: SIMPLEMENTE.LEAL.DNI`;
 
   const numeroWhatsApp = "5492235789055";
   const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
