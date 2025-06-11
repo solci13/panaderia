@@ -210,24 +210,14 @@ function enviarPedido() {
     return;
   }
 
-  const confirmacion = confirm(
-    "Recordá que los pedidos se preparan con 1 día de anticipación. Si hacés tu pedido para hoy, estará sujeto a disponibilidad.\n\n¿Deseás continuar?"
-  );
-  if (!confirmacion) return;
-
   const fechaInput = document.getElementById("fecha-pedido").value;
-
   if (!fechaInput) {
     alert("Por favor, seleccioná una fecha estimada de entrega.");
     return;
   }
 
   const metodoPago = document.getElementById("metodo-pago").value;
-
-  const pedidoTexto = carrito
-    .map((item) => `- ${item.cantidad} x ${item.nombre}`)
-    .join("\n");
-
+  const pedidoTexto = carrito.map(item => `- ${item.cantidad} x ${item.nombre}`).join("\n");
   const total = calcularTotal();
 
   let mensaje = `*Pedido*\n\n`;
@@ -241,32 +231,14 @@ function enviarPedido() {
   mensaje += "*Retiro:* El pedido se retira en mi domicilio.\n";
   mensaje += `*Método de pago:* ${metodoPago}\n`;
 
-  if (metodoPago === "Transferencia")
-    mensaje += `\nAlias: SIMPLEMENTE.LEAL.DNI`;
+  if (metodoPago === "Transferencia") {
+    mensaje += "\nAlias: SIMPLEMENTE.LEAL.DNI";
+  }
 
-  const numeroWhatsApp = "5492235789055";
-  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+  const url = `https://wa.me/5492235789055?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
 
-  mostrarModalGracias();
-
-window.open(url, "_blank");
-vaciarCarrito();
-
-}
-
-function mostrarModalGracias() {
-  const modal = document.getElementById("modal-gracias");
-  modal.style.display = "flex";
-
-  document.getElementById("cerrar-modal").addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
+  vaciarCarrito();
 }
 
 // Vaciar carrito
@@ -314,3 +286,39 @@ window.addEventListener("DOMContentLoaded", () => {
     // Guardar en localStorage
     localStorage.setItem('tema', modoOscuroActivo ? 'oscuro' : 'claro');
   });
+  function copiarRespuesta(opcion) {
+  let mensaje = "";
+  switch (opcion) {
+    case 1:
+      mensaje = "¡Hola! 👋 Gracias por tu pedido ❤️\n\nYa Lo recibimos. 😊";
+      break;
+    case 2:
+      mensaje = "¡Hola! 😊 Tu pedido ya está en preparación. Te avisaré cuando esté listo.";
+      break;
+    case 3:
+      mensaje = "¡Hola! 🎉 Tu pedido ya está listo para retirar..\nCuando estés por venir, avisame así te lo tengo preparado. ¡Gracias!😊";
+      break;
+      case 4:
+  mensaje = "¡Pedido confirmado! ✅\n Te avisamos apenas esté listo 🧑‍🍳✨";
+  break;
+      case 5:
+        mensaje ="¡Hola! Estoy por salir para entregar tu pedido 🚗 Te aviso cuando esté cerca. ¡Gracias!"
+
+   
+
+  }
+
+  navigator.clipboard.writeText(mensaje).then(() => {
+    const msg = document.getElementById("mensaje-copiado");
+    msg.style.display = "block";
+    setTimeout(() => (msg.style.display = "none"), 2000);
+  });
+}
+
+// Mostrar solo si entrás con ?admin en la URL
+window.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("admin") === "true") {
+    document.getElementById("panel-respuestas").style.display = "block";
+  }
+});

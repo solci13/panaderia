@@ -49,17 +49,20 @@
         * Los pedidos deben hacerse con <strong>1 día de anticipación</strong>. Si no, están sujetos a disponibilidad.
       </p>
     </section>
+    
   </main>
-<div id="modal-gracias" class="modal">
-  <div class="modal-contenido">
-    <span id="cerrar-modal" class="cerrar">&times;</span>
-    <h2>¡Gracias por tu pedido! ❤️</h2>
-    <p>Te contactaremos pronto para confirmar la entrega.</p>
-  </div>
-</div>
-
+ 
   <script src="script.js"></script>
 
+<section class="panel-respuestas" id="panel-respuestas">
+  <h3>📋 Respuestas rápidas</h3>
+  <button onclick="copiarRespuesta(1)">✅ Pedido recibido</button>
+  <button onclick="copiarRespuesta(2)">🕒 En preparación</button>
+  <button onclick="copiarRespuesta(3)">📦 Listo para retirar</button>
+ <button onclick="copiarRespuesta(4)">📝 Confirmación con total</button>
+  <button onclick="copiarRespuesta(5)">📝 Envio yo</button>
+  <p id="mensaje-copiado" style="color: green; display: none;">¡Mensaje copiado!</p>
+</section>
 
 </body>
 </html>
