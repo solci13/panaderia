@@ -5,7 +5,7 @@ const productos = [
 ];
 
 // Carrito
-let carrito = [];
+let carrito = []
 
 // Mostrar productos
 function mostrarProductos() {
@@ -249,10 +249,9 @@ function enviarPedido() {
 
   mostrarModalGracias();
 
-  setTimeout(() => {
-    window.open(url, "_blank");
-    vaciarCarrito();
-  }, 500);
+window.open(url, "_blank");
+vaciarCarrito();
+
 }
 
 function mostrarModalGracias() {
