@@ -1,8 +1,26 @@
 // Productos dinámicos
 const productos = [
-  { id: 1, nombre: "Pan de harina de Almendras", precio: 3600 },
-  // { id: 2, nombre: "Pan integral", precio: 500 },
+  {
+    id: 1,
+    nombre: "Pan de harina de Almendras",
+    precio: 3600,
+    descripcionExtra: "1 bolsa (contiene 10 panes)",
+    unidad: "Bolsas"
+  },
+  {
+    id: 2,
+    nombre: "Prepizzas",
+    precio: 2000,
+    unidad: "Unidades"
+  },
+/*   {
+    id: 3,
+    nombre: "Pizzetas",
+    precio: 2500,
+    unidad: "packs"
+  } */
 ];
+
 
 // Carrito
 let carrito = []
@@ -17,10 +35,10 @@ function mostrarProductos() {
     div.className = "producto";
     div.innerHTML = `
       <h2>${prod.nombre}</h2>
-      <p>1 bolsa (contiene 10 panes)</p>
+      ${prod.descripcionExtra ? `<p>${prod.descripcionExtra}</p>` : ""}
       <span class="precio">$${prod.precio}</span>
       <div class="cantidad">
-        <label for="cant-pan-${prod.id}">Bolsas:</label>
+        <label for="cant-pan-${prod.id}">${prod.unidad || "Cantidad"}:</label>
         <input type="number" id="cant-pan-${prod.id}" min="1" value="0" />
         <p id="cantidad-seleccionada-${prod.id}">Cantidad seleccionada: 0</p>
       </div>
@@ -41,6 +59,7 @@ function mostrarProductos() {
     });
   });
 }
+
 
 // Actualizar cantidad seleccionada
 function actualizarCantidadSeleccionada(id) {
