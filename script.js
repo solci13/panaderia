@@ -9,7 +9,7 @@ const productos = [
   },
   {
     id: 2,
-    nombre: "Prepizzas",
+    nombre: "Prepizzas de Harina de Almendras",
     precio: 2000,
     unidad: "Unidades"
   },
